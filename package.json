@@ -18,8 +18,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@vue-leaflet/vue-leaflet": "^0.10.1",
-    "leaflet": "^1.9.4",
+    "@esbuild/linux-x64": "^0.19.5",
     "nuxt3-appwrite": "^1.6.7",
     "ol": "^8.2.0",
     "ol-contextmenu": "^5.3.0",
