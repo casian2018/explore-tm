@@ -53,6 +53,9 @@ const geoLocChange = (event: ObjectEvent) => {
       </template>
     </ol-geolocation>
   </ol-map>
+
+  <Bnav />
+
 </template>
 
 <style scoped>
