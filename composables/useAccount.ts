@@ -45,10 +45,10 @@ export const useAccount = () => {
   };
 
   const connected = async () => {
-    let secure = false;
+    let secure = undefined;
     try {
       const data = await useAppwrite().account.getSession("current");
-      if (data !== undefined) secure = true;
+      if (data !== undefined) secure = data;
       console.log(data);
     } catch {}
     return secure;

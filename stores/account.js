@@ -1,5 +1,5 @@
 export const useAccountStore = defineStore("account", () => {
-  const connected = ref(false);
+  const connected = ref(undefined);
 
   onMounted(() => {
     useAccount()
