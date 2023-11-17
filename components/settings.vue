@@ -22,7 +22,6 @@
                                 Personal Information
                                 <span class="absolute inset-0"></span>
                             </a>
-                            <p class="mt-1 text-gray-600">Get a better understanding of your traffic</p>
                         </div>
                     </div>
                     <div
@@ -37,10 +36,9 @@
                         </div>
                         <div class="flex-auto  hidden md:block">
                             <a href="#" class="block font-semibold text-gray-900">
-                                Engagement
+                                Payment Info
                                 <span class="absolute inset-0"></span>
                             </a>
-                            <p class="mt-1 text-gray-600">Speak directly to your customers</p>
                         </div>
                     </div>
                     <div
@@ -58,7 +56,6 @@
                                 Security
                                 <span class="absolute inset-0"></span>
                             </a>
-                            <p class="mt-1 text-gray-600">Your customers’ data will be safe and secure</p>
                         </div>
                     </div>
                     <div
@@ -73,10 +70,9 @@
                         </div>
                         <div class="flex-auto  hidden md:block">
                             <a href="#" class="block font-semibold text-gray-900">
-                                Integrations
+                                History
                                 <span class="absolute inset-0"></span>
                             </a>
-                            <p class="mt-1 text-gray-600">Connect with third-party tools</p>
                         </div>
                     </div>
                     <div
@@ -91,10 +87,9 @@
                         </div>
                         <div class="flex-auto  hidden md:block">
                             <a href="#" class="block font-semibold text-gray-900">
-                                Automations
+                                Log out
                                 <span class="absolute inset-0"></span>
                             </a>
-                            <p class="mt-1 text-gray-600">Build strategic funnels that will convert</p>
                         </div>
                     </div>
                 </div>

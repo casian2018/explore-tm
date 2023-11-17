@@ -2,11 +2,11 @@
 import type { getWidth } from 'ol/extent';
 <template>
     <!-- component -->
-    <div class="w-full h-screen">
+    <div class="">
         <!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->
         <section id="bottom-navigation" class="block fixed inset-x-0 bottom-0 z-10 bg-white shadow">
             <div id="tabs" class="flex justify-between">
-                <a href="#"
+                <a href="/"
                     class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
                     <svg width="24" height="24" viewBox="0 0 42 42" class="inline-block mb-1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -29,7 +29,7 @@ import type { getWidth } from 'ol/extent';
                     </svg>
                     <span class="tab tab-home block text-xs">Home</span>
                 </a>
-                <a href="#"
+                <a href="/route"
                     class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="inline-block mb-1" height="24" width="24">
                         <g>
@@ -40,7 +40,7 @@ import type { getWidth } from 'ol/extent';
                     </svg>
                     <span class="tab tab-kategori block text-xs">Routes</span>
                 </a>
-                <a href="#"
+                <a href="/explore"
                     class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
                     <svg width="25" height="25" viewBox="0 0 42 42" class="inline-block mb-1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -57,7 +57,7 @@ import type { getWidth } from 'ol/extent';
                     </svg>
                     <span class="tab tab-explore block text-xs">Explore</span>
                 </a>
-                <a href="#"
+                <a href="/rent"
                     class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                         class="inline-block mb-1" viewBox="0 0 16 16">
@@ -66,7 +66,7 @@ import type { getWidth } from 'ol/extent';
                     </svg>
                     <span class="tab tab-whishlist block text-xs">Rent</span>
                 </a>
-                <a href=#
+                <a href="/settings"
                     class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

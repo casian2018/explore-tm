@@ -1,0 +1,4 @@
+<template>
+    <Settings/>
+    <Bnav/>
+</template>
