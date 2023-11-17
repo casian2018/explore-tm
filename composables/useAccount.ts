@@ -3,28 +3,28 @@ import { ID } from "appwrite";
 export const useAccount = () => {
   const client = useAppwrite();
 
-    const registerUser = (email: string, password: string, name?: string) => {
-      // Register User
-      return client.account?.create(ID.unique(), email, password, name).then(
-        (response) => {
-          return { data: response, error: undefined };
-        },
-        (error) => {
-          return { error, data: undefined };
-        }
-      );
-    };
+  const registerUser = (email: string, password: string, name?: string) => {
+    // Register User
+    return client.account?.create(ID.unique(), email, password, name).then(
+      (response) => {
+        return { data: response, error: undefined };
+      },
+      (error) => {
+        return { error, data: undefined };
+      }
+    );
+  };
 
-    const loginUser = (email: string, password: string) => {
-      return client.account?.createEmailSession(email, password).then(
-        (data) => {
-          return { data: data, error: undefined };
-        },
-        (error) => {
-          return { error: error, data: undefined };
-        }
-      );
-    };
+  const loginUser = (email: string, password: string) => {
+    return client.account?.createEmailSession(email, password).then(
+      (data) => {
+        return { data: data, error: undefined };
+      },
+      (error) => {
+        return { error: error, data: undefined };
+      }
+    );
+  };
 
   /*const oauth = (provider: string) => {
     let link = "http://localhost:3000/"
@@ -56,11 +56,24 @@ export const useAccount = () => {
     //return true;
   };
 
+  const updatePrefs = async (data: any) => {
+    try {
+      const response = await client.account?.getPrefs();
+      if (response !== undefined) data = Object.assign({}, response, data);
+      await client.account?.updatePrefs(data);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   return {
     currentUser: () => client.account?.get(),
     registerUser,
     loginUser,
     logoutUser,
     connected,
+    updatePrefs,
+    prefs: () => client.account?.getPrefs(),
   };
 };
