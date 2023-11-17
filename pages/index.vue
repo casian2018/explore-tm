@@ -20,6 +20,9 @@ const geoLocChange = (event: ObjectEvent) => {
 </script>
 
 <template>
+  
+  <authLogin />
+
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
