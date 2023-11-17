@@ -1,6 +1,37 @@
 <script setup>
 import logo from "@/assets/logo.png";
 
+const email = ref("");
+const pass = ref("");
+const error = ref();
+
+function login(email, pass) {
+  const result = useAccount().loginUser(email, pass);
+  result.then((data) => {
+    if (data.error !== undefined) {
+      console.log(data.error);
+      if (data.error.toString().includes("blocked"))
+        error.value = "The current user has been blocked.";
+      else error.value = data.error.message;
+    } else {
+      console.log(data.data);
+      if(!process.server) window.location.reload();
+    }
+  });
+}
+
+function register(email, pass) {
+  const result = useAccount().registerUser(email, pass);
+  result.then((data) => {
+    if (data.error !== undefined) {
+      console.log(data.error);
+      error.value = data.error.message;
+    } else {
+      console.log(data.data);
+      login(email, pass);
+    }
+  });
+}
 </script>
 
 <template>
@@ -12,60 +43,77 @@ import logo from "@/assets/logo.png";
         <div class="rounded-xl bg-gray-800 shadow-xl">
           <div class="p-8">
             <div class="space-y-4">
-              <img
-                :src="logo"
-                loading="lazy"
-                class="w-52"
-              />
+              <img :src="logo" loading="lazy" class="w-52" />
               <h2 class="mb-8 text-2xl text-white font-bold">
                 Log in to explore <br />
                 the city of Timișoara.
               </h2>
             </div>
             <div class="mt-10 grid space-y-4">
+              <div class="mb-1">
+                <label for="email" class="block mb-2 text-sm text-gray-200"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="you@company.com"
+                  v-model="email"
+                  required
+                  class="w-full px-3 py-2 placeholder-gray-300 text-gray-200 border border-gray-300 bg-gray-800 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                />
+              </div>
+              <div class="mb-2">
+                <label for="email" class="block mb-2 text-sm text-gray-200"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  name="pass"
+                  id="pass"
+                  v-model="pass"
+                  required
+                  class="w-full px-3 py-2 placeholder-gray-300 text-gray-200 border border-gray-300 bg-gray-800 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+                />
+              </div>
+
+              <p
+                v-if="error != undefined"
+                class="text-red-500 my-6 font-bold text-center max-w-md"
+              >
+                {{ error }}
+              </p>
+
               <button
+                @click="login(email, pass)"
                 class="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
               >
                 <div
                   class="relative flex items-center space-x-4 justify-center"
                 >
-                  <img
-                    src="https://www.svgrepo.com/show/475656/google-color.svg"
-                    class="absolute left-0 w-5"
-                    alt="google logo"
-                  />
                   <span
                     class="block w-max font-semibold tracking-wide text-white text-sm transition duration-300 group-hover:text-blue-600 sm:text-base"
-                    >Continue with Google
+                    >Login
                   </span>
                 </div>
               </button>
+
               <button
+                @click="register(email, pass)"
                 class="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
               >
                 <div
                   class="relative flex items-center space-x-4 justify-center"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    class="absolute left-0 w-5 text-gray-700"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-                    ></path>
-                  </svg>
                   <span
-                    class="block w-max font-semibold tracking-wide text-sm transition text-white duration-300 group-hover:text-blue-600 sm:text-base"
-                    >Continue with Github
+                    class="block w-max font-semibold tracking-wide text-white text-sm transition duration-300 group-hover:text-blue-600 sm:text-base"
+                    >Register
                   </span>
                 </div>
               </button>
             </div>
-            <div
-              class="mt-14 space-y-4 py-3 text-gray-400 text-center"
-            >
+            <div class="mt-10 space-y-4 py-3 text-gray-400 text-center">
               <p class="text-xs">
                 By proceeding, you agree to our
                 <a href="/tos/" class="underline">Terms of Use</a>

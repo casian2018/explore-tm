@@ -4,6 +4,8 @@ import { ref } from "vue";
 import type { View } from "ol";
 import type { ObjectEvent } from "ol/Object";
 
+const accountStore = useAccountStore();
+
 const center = ref([21.22888756076315, 45.75280124672338]);
 const projection = ref("EPSG:4326");
 const zoom = ref(15);
@@ -21,7 +23,7 @@ const geoLocChange = (event: ObjectEvent) => {
 
 <template>
   
-  <authLogin />
+  <authLogin v-if="!accountStore.connected" />
 
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -57,7 +59,7 @@ const geoLocChange = (event: ObjectEvent) => {
     </ol-geolocation>
   </ol-map>
 
-  <Bnav />
+  <navBottom />
 
 </template>
 
