@@ -6,7 +6,7 @@ import type { ObjectEvent } from "ol/Object";
 
 const center = ref([21.22888756076315, 45.75280124672338]);
 const projection = ref("EPSG:4326");
-const zoom = ref(18);
+const zoom = ref(15);
 const rotation = ref(0);
 const view = ref<View>();
 const map = ref(null);
