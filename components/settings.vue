@@ -242,94 +242,159 @@
 
           <!-- Terms Section -->
           <section>
-            <h2 class="text-2xl font-semibold mb-2">Terms and Conditions</h2>
-            <h14 class="font-bold text-xl">1. Acceptance of Terms:</h14>
-            <p> - By using the Explore TM mobile application ("the App"), you agree to abide by these Terms and
+            <h2 class="text-2xl font-semibold mb-2" v-if="store.ro">Termeni și condiții</h2>
+            <h2 class="text-2xl font-semibold mb-2" v-else>Terms and Conditions</h2>
+
+            <h14 class="font-bold text-xl" v-if="store.ro">1. Acceptarea Termenilor:</h14>
+            <h14 class="font-bold text-xl" v-else>1. Acceptance of Terms:</h14>
+            <p v-if="store.ro"> - Prin utilizarea aplicației mobile Explore TM ("aplicația"), sunteți de acord să respectați acești Termeni și
+              Condiții. </p>
+            <p v-else> - By using the Explore TM mobile application ("the App"), you agree to abide by these Terms and
               Conditions. </p>
 
-            <h14 class="font-bold text-xl">2. User Eligibility:</h14>
-            <p> - Users must be at least 18 years old to use the App. If you are under 18, you may only use the App with
+            <h14 class="font-bold text-xl" v-if="store.ro">2. Eligibilitatea utilizatorului:</h14>
+            <h14 class="font-bold text-xl" v-else>2. User Eligibility:</h14>
+            <p v-if="store.ro"> - Utilizatorii trebuie să aibă cel puțin 18 ani pentru a utiliza aplicația. Dacă aveți sub 18 ani, puteți utiliza aplicația numai cu
+              implicarea unui părinte sau tutore. </p>
+            <p v-else> - Users must be at least 18 years old to use the App. If you are under 18, you may only use the App with
               the involvement of a parent or guardian. </p>
-
-            <h14 class="font-bold text-xl">3. Service Description:</h14>
-            <p> - Explore TM provides a platform for users to explore the city, rent bikes or scooters, check bus arrival
+            
+            <h14 class="font-bold text-xl" v-if="store.ro">3. Descrierea serviciului:</h14>
+            <h14 class="font-bold text-xl" v-else>3. Service Description:</h14>
+            <p v-if="store.ro"> - Explore TM oferă utilizatorilor o platformă pentru a explora orașul, a închiria biciclete sau scutere, a verifica sosirea autobuzului
+              ori și navigați eficient. </p>
+            <p v-else> - Explore TM provides a platform for users to explore the city, rent bikes or scooters, check bus arrival
               times, and navigate efficiently. </p>
 
-            <h14 class="font-bold text-xl">4. Account Information:</h14>
-            <p> - Users are responsible for maintaining the confidentiality of their account information. You agree to
+              <h14 class="font-bold text-xl" v-if="store.ro">4. Informații despre cont:</h14>
+              <h14 class="font-bold text-xl" v-else>4. Account Information:</h14>
+            <p v-if="store.ro"> - Utilizatorii sunt responsabili pentru păstrarea confidențialității informațiilor contului lor. Sunteți de acord
+              notifică imediat Explore TM cu privire la orice utilizare neautorizată a contului tău. </p>
+            <p v-else> - Users are responsible for maintaining the confidentiality of their account information. You agree to
               notify Explore TM immediately of any unauthorized use of your account. </p>
 
-            <h14 class="font-bold text-xl">5. Usage Guidelines:</h14>
-            <p> - Users must use the App responsibly and adhere to all local traffic laws while navigating the city.
-              Reckless or unsafe behavior is strictly prohibited.
+              <h14 class="font-bold text-xl" v-if="store.ro">5. Instrucțiuni de utilizare:</h14>
+              <h14 class="font-bold text-xl" v-else>5. Usage Guidelines:</h14>
+            <p v-if="store.ro"> - Utilizatorii trebuie să utilizeze aplicația în mod responsabil și să respecte toate legile locale de circulație în timp ce navighează în oraș.
+              Comportamentul imprudent sau nesigur este strict interzis.
             </p>
-            <h14 class="font-bold text-xl">6. Rental Services:</h14>
-            <p></p> - When renting bikes or scooters, users agree to follow local traffic rules and return the vehicle in
-            good condition. Users are responsible for any damages incurred during the rental period.
+            <p v-else> - Users must use the App responsibly and adhere to all local traffic laws while navigating the city.
+              Reckless or unsafe behavior is strictly prohibited.
+            </p>       
 
-            <h14 class="font-bold text-xl">7. Bus Arrival Times:</h14>
-            <p> - Bus arrival times provided in the App are based on real-time data when available. Explore TM is not
+            <h14 class="font-bold text-xl" v-if="store.ro">6. Servicii de închiriere:</h14>
+            <h14 class="font-bold text-xl" v-else>6. Rental Services:</h14>
+            <p v-if="store.ro"> - Când închiriază biciclete sau scutere, utilizatorii sunt de acord să respecte regulile de circulație locale și să returneze vehiculul în
+            conditie buna. Utilizatorii sunt responsabili pentru orice daune suferite în timpul perioadei de închiriere.</p>
+            <p v-else> - When renting bikes or scooters, users agree to follow local traffic rules and return the vehicle in
+            good condition. Users are responsible for any damages incurred during the rental period.</p>
+
+            <h14 class="font-bold text-xl" v-if="store.ro">7. Ora de sosire autobuz:</h14>
+            <h14 class="font-bold text-xl" v-else>7. Bus Arrival Times:</h14>
+            <p v-if="store.ro"> - Orele de sosire a autobuzului furnizate în aplicație se bazează pe date în timp real, atunci când sunt disponibile. Explore TM nu este
+              responsabil pentru inexactități sau întârzieri cauzate de circumstanțe neprevăzute.</p>
+            <p v-else> - Bus arrival times provided in the App are based on real-time data when available. Explore TM is not
               responsible for inaccuracies or delays caused by unforeseen circumstances.</p>
 
-            <h14 class="font-bold text-xl">8. Data and Privacy:</h14>
-            <p> - Explore TM values user privacy. The collection and use of personal information are governed by our
+              <h14 class="font-bold text-xl" v-if="store.ro">8. Date și confidențialitate:</h14>
+            <h14 class="font-bold text-xl" v-else>8. Data and Privacy:</h14>
+            <p v-if="store.ro"> - Explore TM apreciază confidențialitatea utilizatorilor. Colectarea și utilizarea informațiilor cu caracter personal sunt guvernate de noastre
+              Politica de confidențialitate.</p>
+            <p v-else> - Explore TM values user privacy. The collection and use of personal information are governed by our
               Privacy Policy.</p>
 
-            <h14 class="font-bold text-xl">9. Intellectual Property:</h14>
-            <p>- All content and materials available on the App, including logos, trademarks, and information, are the
+              <h14 class="font-bold text-xl" v-if="store.ro">9. Proprietatea intelectuală:</h14>
+            <h14 class="font-bold text-xl" v-else>9. Intellectual Property:</h14>
+            <p v-if="store.ro">- Tot conținutul și materialele disponibile în aplicație, inclusiv logo-urile, mărcile comerciale și informațiile, sunt
+              proprietatea Explore TM și protejată de legile privind proprietatea intelectuală.</p>
+            <p v-else>- All content and materials available on the App, including logos, trademarks, and information, are the
               property of Explore TM and protected by intellectual property laws.</p>
 
-            <h14 class="font-bold text-xl">10. Termination:</h14>
-            <p> - Explore TM reserves the right to terminate or suspend your account without prior notice for violations
+              <h14 class="font-bold text-xl" v-if="store.ro">10. Încetare:</h14>
+            <h14 class="font-bold text-xl" v-else>10. Termination:</h14>
+            <p v-if="store.ro"> - Explore TM își rezervă dreptul de a închide sau suspenda contul fără notificare prealabilă pentru încălcări
+              din acești Termeni și condiții.</p>
+            <p v-else> - Explore TM reserves the right to terminate or suspend your account without prior notice for violations
               of these Terms and Conditions.</p>
 
-            <h14 class="font-bold text-xl">11. Disclaimer of Warranty:</h14>
-            <p> - The App is provided "as is" without warranties of any kind, either expressed or implied. Explore TM does
+              <h14 class="font-bold text-xl" v-if="store.ro">11. Exonerare de garanție:</h14>
+            <h14 class="font-bold text-xl" v-else>11. Disclaimer of Warranty:</h14>
+            <p v-if="store.ro"> - Aplicația este furnizată „ca atare”, fără garanții de niciun fel, fie exprese, fie implicite. Explore TM face
+              nu garantează acuratețea, fiabilitatea sau disponibilitatea aplicației.</p>
+            <p v-else> - The App is provided "as is" without warranties of any kind, either expressed or implied. Explore TM does
               not guarantee the accuracy, reliability, or availability of the App.</p>
 
-            <h14 class="font-bold text-xl">12. Limitation of Liability:</h14>
-            <p> - Explore TM is not liable for any direct, indirect, incidental, consequential, or punitive damages
+
+              <h14 class="font-bold text-xl" v-if="store.ro">12. Limitarea răspunderii:</h14>
+            <h14 class="font-bold text-xl" v-else>12. Limitation of Liability:</h14>
+            <p v-if="store.ro"> - Explore TM nu este responsabil pentru nicio daune directe, indirecte, incidentale, consecutive sau punitive
+              care rezultă din utilizarea de către dvs. a aplicației.</p>
+            <p v-else> - Explore TM is not liable for any direct, indirect, incidental, consequential, or punitive damages
               arising out of your use of the App.</p>
 
-            <h14 class="font-bold text-xl">13. Changes to Terms:</h14>
-            <p> - Explore TM may update these Terms and Conditions at any time. Users will be notified of any significant
+              <h14 class="font-bold text-xl" v-if="store.ro">13. Modificări ale Termenilor:</h14>
+            <h14 class="font-bold text-xl" v-else>13. Changes to Terms:</h14>
+            <p v-if="store.ro"> - Explore TM poate actualiza acești Termeni și Condiții în orice moment. Utilizatorii vor fi informați cu privire la orice semnificație
+              modificări.</p>
+            <p v-else> - Explore TM may update these Terms and Conditions at any time. Users will be notified of any significant
               changes.</p>
 
-            <h14 class="font-bold text-xl">14. Governing Law:</h14>
-            <p>- These Terms and Conditions are governed by and construed in accordance with the laws of your
+              <h14 class="font-bold text-xl" v-if="store.ro">14. Legea aplicabilă:</h14>
+            <h14 class="font-bold text-xl" v-else>14. Governing Law:</h14>
+            <p v-if="store.ro">- Acești Termeni și Condiții sunt guvernați și interpretați în conformitate cu legile dvs
+              jurisdicție.</p>
+            <p v-else>- These Terms and Conditions are governed by and construed in accordance with the laws of your
               jurisdiction.</p>
-
-            <p>By using the Explore TM App, you acknowledge that you have read, understood, and agree to these Terms and
+              <p v-if="store.ro">Folosind aplicația Explore TM, confirmați că ați citit, înțeles și sunteți de acord cu acești Termeni și
+              Condiții.</p>
+            <p v-else>By using the Explore TM App, you acknowledge that you have read, understood, and agree to these Terms and
               Conditions.</p>
           </section>
 
           <!-- Privacy Policy Section -->
           <section class="mt-8">
+            <h2 class="text-2xl font-semibold mb-2" v-if="store.ro">Politica de confidențialitate</h2>
+
             <h2 class="text-2xl font-semibold mb-2">Privacy Policy</h2>
 
-            <p class="text-lg">
+            <p class="text-lg" v-if="store.ro">
+              <strong class="font-bold text-xl">Colectarea de informații:</strong> - Explore TM colectează anumite informații
+              atunci când utilizați aplicația noastră, inclusiv, dar fără a se limita la informațiile dispozitivului dvs., locația și modelele de utilizare.
+            </p>
+            <p class="text-lg" v-else>
               <strong class="font-bold text-xl">Information Collection:</strong> - Explore TM collects certain information
               when you use our App, including but not limited to your device information, location, and usage patterns.
             </p>
-
-            <p class="text-lg">
+            <p class="text-lg" v-if="store.ro">
+              <strong class="font-bold text-xl">Utilizarea datelor:</strong> - Utilizăm datele colectate în diverse scopuri,
+              cum ar fi îmbunătățirea serviciilor noastre, furnizarea de conținut personalizat și analizarea comportamentului utilizatorilor pentru a îmbunătăți
+              experiența utilizatorului.
+            </p>
+            <p class="text-lg" v-else>
               <strong class="font-bold text-xl">Data Usage:</strong> - We use the collected data for various purposes,
               such as improving our services, providing personalized content, and analyzing user behavior to enhance the
               user experience.
             </p>
-
-            <!-- Include more detailed content for your Privacy Policy -->
-
-            <p class="text-lg">
-              By using the Explore TM App, you acknowledge that you have read, understood, and agree to our Privacy
-              Policy.
+            <p class="text-lg" v-if="store.ro">
+              Prin utilizarea aplicației Explore TM, confirmați că ați citit, înțeles și sunteți de acord cu confidențialitatea noastră
+              Politică.
+            </p>
+            <p class="text-lg" v-else>
+              <strong class="font-bold text-xl">Data Usage:</strong> - We use the collected data for various purposes,
+              such as improving our services, providing personalized content, and analyzing user behavior to enhance the
+              user experience.
             </p>
           </section>
 
           <!-- Other Security Information Section -->
           <section class="mt-8">
-            <h2 class="text-2xl font-semibold mb-2">Other Security Information</h2>
-            <p class="text-lg">
+            <h2 class="text-2xl font-semibold mb-2" v-if="store.ro">Alte informații de securitate</h2>
+            <h2 class="text-2xl font-semibold mb-2" v-else>Other Security Information</h2>
+            <p class="text-lg" v-if="store.ro">
+              Conținut suplimentar legat de securitate poate fi adăugat aici. Aceasta poate include informații despre cont
+              securitate, criptare a datelor etc.
+            </p>
+            <p class="text-lg" v-else>
               Additional security-related content can be added here. This might include information about account
               security, data encryption, etc.
             </p>
@@ -356,7 +421,8 @@
           </div>
           <div class="my-3 flex flex-col">
             <div class="mb-2">
-              <label for="" class="text-gray-700">Expired</label>
+              <label for="" class="text-gray-700" v-if="store.ro">Expirat</label>
+              <label for="" class="text-gray-700" v-else>Expired</label>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <select name="" id=""
