@@ -1,57 +1,16 @@
 <script setup>
 import logo from "@/assets/logo.png";
-
-const ro = ref(false);
-
-const index = ref(0);
-
-function check() {
-  useAccount()
-    .prefs()
-    .then((data) => {
-      console.log(data);
-      if (data.isRomanian === undefined) index.value = 0;
-      else {
-        ro.value = boolean(data.isRomanian);
-        if (data.firstTime === undefined) index.value = 1;
-        else if (data.attractions === undefined) index.value = 2;
-        else if (data.single === undefined) index.value = 3;
-        else if (data.activities === undefined) index.value = 4;
-        else if (data.budget === undefined) index.value = 5;
-        else if (data.time === undefined) index.value = 6;
-        else index.value = 7;
-      }
-    });
-}
-
-check();
-
-function boolean(value) {
-  if (typeof value === "string") {
-    switch (value.toLowerCase().trim()) {
-      case "true":
-      case "yes":
-      case "1":
-        return true;
-      case "false":
-      case "no":
-      case "0":
-      case null:
-        return false;
-      default:
-        return Boolean(value);
-    }
-  } else {
-    return Boolean(value);
-  }
-}
+const store = useAccountStore();
 
 function answer(key, value) {
   useAccount()
     .updatePrefs({ [key]: value })
     .then(() => {
-      if (key === "isRomanian") ro.value = boolean(value);
-      check();
+      //if (key === "isRomanian") ro.value = boolean(value);
+      //if(key !== "begin") answer("begin", false);
+
+      store.updateprefs();
+      store.tempLoad(true, 1000);
     });
 }
 </script>
@@ -66,19 +25,31 @@ function answer(key, value) {
           <div class="p-8">
             <div class="space-y-4">
               <img :src="logo" loading="lazy" class="w-52" />
-              <h2 class="mb-8 text-2xl text-white font-bold" v-if="!ro">
-                Complete your profile <br />
-                in order to explore the city.
-              </h2>
-              <h2 class="mb-8 text-2xl text-white font-bold" v-else>
-                Completează-ți profilul <br />
-                pentru a explora orașul!
-              </h2>
+              <div v-if="store.steps !== 7">
+                <h2 class="mb-8 text-2xl text-white font-bold" v-if="!store.ro">
+                  Complete your profile <br />
+                  in order to explore the city.
+                </h2>
+                <h2 class="mb-8 text-2xl text-white font-bold" v-else>
+                  Completează-ți profilul <br />
+                  pentru a explora orașul!
+                </h2>
+              </div>
+              <div v-else>
+                <h2 class="mb-8 text-2xl text-white font-bold" v-if="!store.ro">
+                  Profilul a fost <br />
+                  completat. Bun venit!
+                </h2>
+                <h2 class="mb-8 text-2xl text-white font-bold" v-else>
+                  The profile was <br />
+                  completed. Welcome!
+                </h2>
+              </div>
             </div>
-            <div class="mt-10 grid space-y-4">
+            <div class="mt-10 grid space-y-4" v-if="!useAccountStore().loading">
               <div
                 class="border rounded-md p-4 w-full mx-auto max-w-2xl text-white"
-                v-if="index === 0"
+                v-if="store.steps === 0"
               >
                 <h4 class="text-xl lg:text-2xl font-semibold">
                   Do you speak Romanian?
@@ -90,7 +61,7 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">Yes</i>
+                    <i class="pl-2">{{ store.ro ? "Da" : "Yes" }}</i>
                   </label>
 
                   <label
@@ -98,18 +69,18 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">No</i>
+                    <i class="pl-2">{{ store.ro ? "Nu" : "No" }}</i>
                   </label>
                 </div>
               </div>
 
               <div
                 class="border rounded-md p-4 w-full mx-auto max-w-2xl text-white"
-                v-if="index === 1"
+                v-if="store.steps === 1"
               >
                 <h4 class="text-xl lg:text-2xl font-semibold">
                   {{
-                    ro
+                    store.ro
                       ? "Ai mai fost prin Timișoara?"
                       : "Have you ever been in Timișoara?"
                   }}
@@ -121,7 +92,7 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">Yes</i>
+                    <i class="pl-2">{{ store.ro ? "Da" : "Yes" }}</i>
                   </label>
 
                   <label
@@ -129,18 +100,18 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">No</i>
+                    <i class="pl-2">{{ store.ro ? "Nu" : "No" }}</i>
                   </label>
                 </div>
               </div>
 
               <div
                 class="border rounded-md p-4 w-full mx-auto max-w-2xl text-white"
-                v-if="index === 2"
+                v-if="store.steps === 2"
               >
                 <h4 class="text-xl lg:text-2xl font-semibold">
                   {{
-                    ro
+                    store.ro
                       ? "Ce te atrage cel mai mult atunci când explorezi un oraș nou?"
                       : "What attracts you most when exploring a new city?"
                   }}
@@ -153,7 +124,9 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Istoria și arhitectura" : "History and architecture"
+                      store.ro
+                        ? "Istoria și arhitectura"
+                        : "History and architecture"
                     }}</i>
                   </label>
 
@@ -163,7 +136,9 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Cultura locală și arta" : "Local culture and art"
+                      store.ro
+                        ? "Cultura locală și arta"
+                        : "Local culture and art"
                     }}</i>
                   </label>
 
@@ -173,7 +148,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro
+                      store.ro
                         ? "Evenimente și activități sociale"
                         : "Social events and activities"
                     }}</i>
@@ -185,7 +160,9 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Spații verzi și natură" : "Green spaces and nature"
+                      store.ro
+                        ? "Spații verzi și natură"
+                        : "Green spaces and nature"
                     }}</i>
                   </label>
                 </div>
@@ -193,11 +170,11 @@ function answer(key, value) {
 
               <div
                 class="border rounded-md p-4 w-full mx-auto max-w-2xl text-white"
-                v-if="index === 3"
+                v-if="store.steps === 3"
               >
                 <h4 class="text-xl lg:text-2xl font-semibold">
                   {{
-                    ro
+                    store.ro
                       ? "Preferi să explorezi singur sau cu prietenii?"
                       : "Do you prefer to explore alone or with friends?"
                   }}
@@ -209,7 +186,7 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">{{ ro ? "Singur" : "Alone" }}</i>
+                    <i class="pl-2">{{ store.ro ? "Singur" : "Alone" }}</i>
                   </label>
 
                   <label
@@ -218,7 +195,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Cu prietenii" : "With friends"
+                      store.ro ? "Cu prietenii" : "With friends"
                     }}</i>
                   </label>
 
@@ -227,18 +204,20 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">{{ ro ? "Cu familia" : "With family" }}</i>
+                    <i class="pl-2">{{
+                      store.ro ? "Cu familia" : "With family"
+                    }}</i>
                   </label>
                 </div>
               </div>
 
               <div
                 class="border rounded-md p-4 w-full mx-auto max-w-2xl text-white"
-                v-if="index === 4"
+                v-if="store.steps === 4"
               >
                 <h4 class="text-xl lg:text-2xl font-semibold">
                   {{
-                    ro
+                    store.ro
                       ? "Ce tip de activități îți place să faci în timpul liber?"
                       : "What kind of activities do you like to do in your free time?"
                   }}
@@ -251,7 +230,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro
+                      store.ro
                         ? "Sport și activități în aer liber"
                         : "Sports and outdoor activities"
                     }}</i>
@@ -263,7 +242,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro
+                      store.ro
                         ? "Vizionarea de filme și seriale"
                         : "Watching movies and series"
                     }}</i>
@@ -275,7 +254,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Cititul cărților" : "Reading books"
+                      store.ro ? "Cititul cărților" : "Reading books"
                     }}</i>
                   </label>
 
@@ -285,7 +264,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro
+                      store.ro
                         ? "Participarea la evenimente culturale"
                         : "Participation in cultural events"
                     }}</i>
@@ -295,11 +274,11 @@ function answer(key, value) {
 
               <div
                 class="border rounded-md p-4 w-full mx-auto max-w-2xl text-white"
-                v-if="index === 5"
+                v-if="store.steps === 5"
               >
                 <h4 class="text-xl lg:text-2xl font-semibold">
                   {{
-                    ro
+                    store.ro
                       ? "Care este bugetul tău obișnuit pentru activități de divertisment în oraș?"
                       : "What is your typical budget for entertainment in the city?"
                   }}
@@ -312,7 +291,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Mic (sub 50 RON)" : "Small (under 10 EUR)"
+                      store.ro ? "Mic (sub 50 RON)" : "Small (under 10 EUR)"
                     }}</i>
                   </label>
 
@@ -322,7 +301,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Mediu (50-200 RON)" : "Medium (10-40 EUR)"
+                      store.ro ? "Mediu (50-200 RON)" : "Medium (10-40 EUR)"
                     }}</i>
                   </label>
 
@@ -332,7 +311,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Mare (peste 200 RON)" : "Large (over 40 RON)"
+                      store.ro ? "Mare (peste 200 RON)" : "Large (over 40 RON)"
                     }}</i>
                   </label>
                 </div>
@@ -340,11 +319,11 @@ function answer(key, value) {
 
               <div
                 class="border rounded-md p-4 w-full mx-auto max-w-2xl text-white"
-                v-if="index === 6"
+                v-if="store.steps === 6"
               >
                 <h4 class="text-xl lg:text-2xl font-semibold">
                   {{
-                    ro
+                    store.ro
                       ? "În ce interval orar preferi să explorezi orașul?"
                       : "What time do you prefer to explore the city?"
                   }}
@@ -357,7 +336,7 @@ function answer(key, value) {
                   >
                     <input type="radio" />
                     <i class="pl-2">{{
-                      ro ? "Dimineața devreme" : "Early in the morning"
+                      store.ro ? "Dimineața devreme" : "Early in the morning"
                     }}</i>
                   </label>
 
@@ -366,7 +345,7 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">{{ ro ? "Ziua" : "Day" }}</i>
+                    <i class="pl-2">{{ store.ro ? "Ziua" : "Day" }}</i>
                   </label>
 
                   <label
@@ -374,7 +353,9 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">{{ ro ? "Seara" : "In the evening" }}</i>
+                    <i class="pl-2">{{
+                      store.ro ? "Seara" : "In the evening"
+                    }}</i>
                   </label>
 
                   <label
@@ -382,20 +363,34 @@ function answer(key, value) {
                     class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 hover:bg-indigo-300 cursor-pointer"
                   >
                     <input type="radio" />
-                    <i class="pl-2">{{ ro ? "Noaptea" : "The night" }}</i>
+                    <i class="pl-2">{{ store.ro ? "Noaptea" : "The night" }}</i>
                   </label>
                 </div>
               </div>
 
-              <div
-                class="border rounded-md p-4 w-full mx-auto max-w-2xl text-white"
-                v-if="index === 7"
-              >
-                <h4 class="text-xl lg:text-2xl font-semibold">
-                  {{ ro ? "Momentan atat..." : "At the moment that's all..." }}
-                </h4>
+              <div class="grid place-items-center" v-if="store.steps === 7">
+                <div class="relative">
+                  <div class="absolute -inset-5">
+                    <div
+                      class="w-full h-full max-w-sm mx-auto lg:mx-0 opacity-30 blur-lg bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"
+                    ></div>
+                  </div>
+                  <a
+                    @click="answer('begin', 'true')"
+                    title=""
+                    class="relative z-10 inline-flex items-center justify-center w-full px-8 py-3 text-lg font-bold text-white transition-all duration-200 bg-gray-900 border-2 border-transparent sm:w-auto rounded-xl font-pj hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                    role="button"
+                  >
+                    {{ store.ro ? "Pornește ExploreTM" : "Open ExploreTM" }}
+                  </a>
+                </div>
               </div>
             </div>
+
+            <div class="mt-10 grid space-y-4" v-else>
+              <div class="grid place-items-center"><loading /></div>
+            </div>
+
             <div class="mt-10 space-y-4 py-3 text-gray-400 text-center">
               <p class="text-xs">
                 By proceeding, you agree to our

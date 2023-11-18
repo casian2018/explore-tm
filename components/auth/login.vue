@@ -43,7 +43,7 @@ function register(email, pass) {
         <div class="rounded-xl bg-gray-800 shadow-xl">
           <div class="p-8">
             <div class="space-y-4">
-              <img :src="logo" loading="lazy" class="w-52" />
+              <img :src="logo" class="w-52" />
               <h2 class="mb-8 text-2xl text-white font-bold">
                 Log in to explore <br />
                 the city of Timișoara.

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import markerIcon from "@/assets/marker.png";
+import logo from "@/assets/logo.png";
 import { ref } from "vue";
 import type { View } from "ol";
 import type { ObjectEvent } from "ol/Object";
@@ -22,9 +23,38 @@ const geoLocChange = (event: ObjectEvent) => {
 </script>
 
 <template>
-  
-  <authLogin v-if="accountStore.connected === undefined" />
-  <authSteps v-else-if="accountStore.connected !== undefined" />
+  <div v-if="accountStore.loading && accountStore.steps === 0 && accountStore.connected !== undefined">
+    <div
+      class="fixed grid place-items-center backdrop-blur-sm top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center"
+    >
+      <div class="relative container m-auto px-6">
+        <div class="m-auto">
+          <div class="rounded-xl bg-gray-800 shadow-xl">
+            <div class="p-8">
+              <div class="space-y-4">
+                <img :src="logo" class="w-52" />
+                <h2 class="mb-8 text-2xl text-white font-bold">
+                  The experience is <br />
+                  loading.
+                </h2>
+              </div>
+              <div class="mt-10 grid space-y-4">
+                <loading />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div v-else>
+    <authLogin v-if="accountStore.connected === undefined" />
+    <authSteps
+      v-else-if="
+        accountStore.connected !== undefined && accountStore.steps !== 14
+      "
+    />
+  </div>
 
   <ol-map
     :loadTilesWhileAnimating="true"
@@ -61,7 +91,6 @@ const geoLocChange = (event: ObjectEvent) => {
   </ol-map>
 
   <navBottom />
-
 </template>
 
 <style scoped>
