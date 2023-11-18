@@ -23,8 +23,8 @@ const geoLocChange = (event: ObjectEvent) => {
 
 <template>
   
-  <authLogin v-if="accountStore.connected === undefined" />
-  <authSteps v-else-if="accountStore.connected !== undefined" />
+  <!---<authLogin v-if="accountStore.connected === undefined" />
+  <authSteps v-else-if="accountStore.connected !== undefined" />--->
 
   <ol-map
     :loadTilesWhileAnimating="true"
