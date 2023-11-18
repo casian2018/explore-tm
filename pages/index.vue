@@ -62,7 +62,3 @@ const accountStore = useAccountStore();
 
   <navBottom v-if="accountStore.steps === 14" />
 </template>
-
-<style scoped>
-@import "vue3-openlayers/dist/vue3-openlayers.css";
-</style>

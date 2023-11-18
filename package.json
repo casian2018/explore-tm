@@ -14,6 +14,7 @@
     "@nuxtjs/tailwindcss": "^6.9.5",
     "@pinia/nuxt": "^0.5.1",
     "nuxt": "^3.8.1",
+    "nuxt-chatgpt": "^0.2.1",
     "nuxt3-leaflet": "^1.0.12",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"

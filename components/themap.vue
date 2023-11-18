@@ -16,7 +16,7 @@ const points = ref<any>(undefined);
 
 const client = useAppwrite();
 client.databases
-  .listDocuments("655831ac4075d3f13cae", "655865878f6ee4aa1aeb", [Query.limit(100)])
+  .listDocuments("655831ac4075d3f13cae", "655865878f6ee4aa1aeb", [Query.limit(500)])
   .then((response) => {
     console.log("points", response);
     points.value = response.documents;
@@ -45,7 +45,7 @@ setInterval(() => {
 
 <template>
   <div style="height: 100vh; width: 100vw">
-    <LMap ref="map" :zoom="15" :center="center" class="z-10">
+    <LMap ref="map" :zoom="15" :minZoom="8" :center="center" class="z-10">
       <LTileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&amp;copy; <a href="https://www.codeko.ro/">Codeko</a> Team'
@@ -54,11 +54,11 @@ setInterval(() => {
       />
 
       <template v-if="location">
-        <l-circle-marker :lat-lng="center" :fillOpacity="1" :radius="0.1" />
+        <l-circle-marker :lat-lng="center" :fillOpacity="1" :radius="0.25" />
         <l-circle-marker
           :lat-lng="center"
-          :radius="location.accuracy / 2"
-          :stroke="false"
+          :radius="35"
+          :stroke="true"
         />
       </template>
 

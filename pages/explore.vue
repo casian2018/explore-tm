@@ -2,6 +2,7 @@
 import logo from "@/assets/logo.png";
 import { Query } from "appwrite";
 const store = useAccountStore();
+const { chat } = useChatgpt()
 
 const details = ref("");
 
@@ -9,7 +10,7 @@ function generate() {
   const client = useAppwrite();
   client.databases
     .listDocuments("655831ac4075d3f13cae", "655865878f6ee4aa1aeb", [
-      Query.limit(100),
+      Query.limit(500),
     ])
     .then((response) => {
       const prefs = store.prefs;
@@ -22,14 +23,14 @@ function generate() {
         ];
       }
 
-      let newArray = response.documents.slice(0, 25);
+      let newArray = response.documents.slice(0, 50);
 
       let locations = "";
       newArray.forEach((element) => {
         locations += "[" + element.name + "@" + element.gps + "],";
       });
 
-      console.log("gen", newArray, locations);
+      console.log("gen", locations);
       const text =
         "I will give you some questions and answers so you will be able to create a pshichologic profile of the user, after that i will give you 5 green spaces from timisoara, 5 turistic points, 5 restaurants, 5 shops and i want you to create a itinierar using those. your output should be in the format of json, only json is accepted with no other message or comments, dirrectly the json. Do you speak romanian? " +
         store.ro +
@@ -47,33 +48,16 @@ function generate() {
         prefs.time +
         ". The user conditions '" +
         details.value +
-        "'. Next I'll give you 25 places from the city, you need to select 5 of those, please return in the json output the name of the place and the coords. Please exclude all the places that contain in the name Ghiseu. Please give the ouput in the json dirrectly, just the selected places in a array [] called 'places'. The places are: " +
+        "'. Next I'll give you 25 places from the city, you need to select a amount of them that depends on the time of the day, the period and personality, please return in the json output the name of the place and the coords. Please exclude all the places that contain in the name Ghiseu. Please give the ouput in the json dirrectly, just the selected places in a array [] called 'places'. The places are: " +
         locations;
 
-      getprompt(text).then((data) => {
-        console.log(data);
-      });
+      (async () => {
+        const response = await chat(text)
+        console.log(response)
+      })();
     });
 }
 
-async function getprompt(prompt) {
-  const response = await useFetch("http://6558310948395767eb14.s.codeko.ro/", {
-    method: "POST",
-    cors: "no-cors",
-    body: JSON.stringify({ prompt }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const json = await response.json();
-
-  if (!json.ok || json.error) {
-    alert(json.error);
-  }
-
-  return json.completion;
-}
 </script>
 
 <template>
