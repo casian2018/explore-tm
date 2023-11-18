@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Query } from "appwrite";
 const map = ref();
 const location = ref({
   latitude: 21.22888756076315,
@@ -15,7 +16,7 @@ const points = ref<any>(undefined);
 
 const client = useAppwrite();
 client.databases
-  .listDocuments("655831ac4075d3f13cae", "655865878f6ee4aa1aeb")
+  .listDocuments("655831ac4075d3f13cae", "655865878f6ee4aa1aeb", [Query.limit(100)])
   .then((response) => {
     console.log("points", response);
     points.value = response.documents;
@@ -62,7 +63,7 @@ setInterval(() => {
       </template>
 
       <LMarker v-for="p in points" :key="p.name" :lat-lng="JSON.parse(p.gps)">
-        <LIcon :icon-url="p.marker" :icon-size="[25, 41]" />
+        <LIcon :icon-url="p.marker" :icon-size="[32, 32]" />
         <LPopup>
           <div class="text-black">
             <p>Name: {{ p.name }}</p>
