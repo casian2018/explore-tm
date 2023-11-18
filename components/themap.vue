@@ -41,6 +41,7 @@ setInterval(() => {
     }
   );
 }, 1500);
+
 </script>
 
 <template>
