@@ -22,7 +22,7 @@
           <button class="tablink" @click="openCity('Security', 'green')">
             Security
           </button>
-          <button class="" @click=""><svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1"
+          <a class="" href="/logout"><svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1"
               xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 384.971 384.971"
               xml:space="preserve">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -39,7 +39,7 @@
                   </g>
                 </g>
               </g>
-            </svg></button>
+            </svg></a>
         </div>
       </div>
     </div>
