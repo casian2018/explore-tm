@@ -1,0 +1,13 @@
+io.flutter.plugins.webviewflutter.webview_flutter_android-pngs-0 C:\MBD\projects\websites\explore-tm\app\exploreapp\build\webview_flutter_android\generated\res\pngs\release
+io.flutter.plugins.webviewflutter.webview_flutter_android-resValues-1 C:\MBD\projects\websites\explore-tm\app\exploreapp\build\webview_flutter_android\generated\res\resValues\release
+io.flutter.plugins.webviewflutter.webview_flutter_android-rs-2 C:\MBD\projects\websites\explore-tm\app\exploreapp\build\webview_flutter_android\generated\res\rs\release
+io.flutter.plugins.webviewflutter.webview_flutter_android-mergeReleaseResources-3 C:\MBD\projects\websites\explore-tm\app\exploreapp\build\webview_flutter_android\intermediates\incremental\release\mergeReleaseResources\merged.dir
+io.flutter.plugins.webviewflutter.webview_flutter_android-mergeReleaseResources-4 C:\MBD\projects\websites\explore-tm\app\exploreapp\build\webview_flutter_android\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+io.flutter.plugins.webviewflutter.webview_flutter_android-merged_res-5 C:\MBD\projects\websites\explore-tm\app\exploreapp\build\webview_flutter_android\intermediates\merged_res\release
+io.flutter.plugins.webviewflutter.webview_flutter_android-jetified-window-1.0.0-beta04-6 C:\Users\daniel\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\res
+io.flutter.plugins.webviewflutter.webview_flutter_android-webkit-1.7.0-7 C:\Users\daniel\.gradle\caches\transforms-3\26053599e8c0dac0e11dd421905435f3\transformed\webkit-1.7.0\res
+io.flutter.plugins.webviewflutter.webview_flutter_android-jetified-annotation-experimental-1.1.0-8 C:\Users\daniel\.gradle\caches\transforms-3\6c0c163cc77ae6c91f9f7dfcd179c29c\transformed\jetified-annotation-experimental-1.1.0\res
+io.flutter.plugins.webviewflutter.webview_flutter_android-core-1.6.0-9 C:\Users\daniel\.gradle\caches\transforms-3\7e9df2ac2213a6bd3cef0f2f27870d79\transformed\core-1.6.0\res
+io.flutter.plugins.webviewflutter.webview_flutter_android-jetified-window-java-1.0.0-beta04-10 C:\Users\daniel\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\res
+io.flutter.plugins.webviewflutter.webview_flutter_android-main-11 C:\Users\daniel\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-3.12.1\android\src\main\res
+io.flutter.plugins.webviewflutter.webview_flutter_android-release-12 C:\Users\daniel\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-3.12.1\android\src\release\res

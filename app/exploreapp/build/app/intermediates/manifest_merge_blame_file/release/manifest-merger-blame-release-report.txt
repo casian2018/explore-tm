@@ -1,0 +1,104 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="one.mbd.exploretm"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:3:5-66
+11-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:3:22-64
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:4:5-79
+12-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:4:22-77
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:5:5-80
+13-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:5:22-78
+14    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+14-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:6:5-78
+14-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:6:22-76
+15    <uses-permission android:name="android.permission.ACCESS_COARSSE_LOCATION" />
+15-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:7:5-81
+15-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:7:22-79
+16
+17    <application
+18        android:name="android.app.Application"
+18-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:11:9-42
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.6.0] C:\Users\daniel\.gradle\caches\transforms-3\7e9df2ac2213a6bd3cef0f2f27870d79\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+20        android:icon="@mipmap/ic_launcher"
+20-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:12:9-43
+21        android:label="exploreapp" >
+21-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:10:9-35
+22        <activity
+22-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:13:9-33:20
+23            android:name="com.example.exploreapp.MainActivity"
+23-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:14:13-41
+24            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+24-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:18:13-163
+25            android:exported="true"
+25-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:15:13-36
+26            android:hardwareAccelerated="true"
+26-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:19:13-47
+27            android:launchMode="singleTop"
+27-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:16:13-43
+28            android:theme="@style/LaunchTheme"
+28-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:17:13-47
+29            android:windowSoftInputMode="adjustResize" >
+29-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:20:13-55
+30
+31            <!--
+32                 Specifies an Android theme to apply to this Activity as soon as
+33                 the Android process has started. This theme is visible to the user
+34                 while the Flutter UI initializes. After that, this theme continues
+35                 to determine the Window background behind the Flutter UI.
+36            -->
+37            <meta-data
+37-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:25:13-28:17
+38                android:name="io.flutter.embedding.android.NormalTheme"
+38-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:26:15-70
+39                android:resource="@style/NormalTheme" />
+39-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:27:15-52
+40
+41            <intent-filter>
+41-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:29:13-32:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:30:17-68
+42-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:30:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:31:17-76
+44-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:31:27-74
+45            </intent-filter>
+46        </activity>
+47        <!--
+48             Don't delete the meta-data below.
+49             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+50        -->
+51        <meta-data
+51-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:36:9-38:33
+52            android:name="flutterEmbedding"
+52-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:37:13-44
+53            android:value="2" />
+53-->C:\MBD\projects\websites\explore-tm\app\exploreapp\android\app\src\main\AndroidManifest.xml:38:13-30
+54
+55        <uses-library
+55-->[androidx.window:window:1.0.0-beta04] C:\Users\daniel\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+56            android:name="androidx.window.extensions"
+56-->[androidx.window:window:1.0.0-beta04] C:\Users\daniel\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+57            android:required="false" />
+57-->[androidx.window:window:1.0.0-beta04] C:\Users\daniel\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+58        <uses-library
+58-->[androidx.window:window:1.0.0-beta04] C:\Users\daniel\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+59            android:name="androidx.window.sidecar"
+59-->[androidx.window:window:1.0.0-beta04] C:\Users\daniel\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+60            android:required="false" />
+60-->[androidx.window:window:1.0.0-beta04] C:\Users\daniel\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+61    </application>
+62
+63</manifest>
