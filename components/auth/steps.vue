@@ -20,7 +20,7 @@ function answer(key, value) {
     class="fixed grid place-items-center backdrop-blur-sm top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center"
   >
     <div class="relative container m-auto px-6">
-      <div class="m-auto md:w-7/12">
+      <div class="m-auto md:w-7/12 py-6">
         <div class="rounded-xl bg-gray-800 shadow-xl">
           <div class="p-8">
             <div class="space-y-4">
@@ -36,7 +36,7 @@ function answer(key, value) {
                 </h2>
               </div>
               <div v-else>
-                <h2 class="mb-8 text-2xl text-white font-bold" v-if="!store.ro">
+                <h2 class="mb-8 text-2xl text-white font-bold" v-if="store.ro">
                   Profilul a fost <br />
                   completat. Bun venit!
                 </h2>

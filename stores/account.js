@@ -3,6 +3,7 @@ export const useAccountStore = defineStore("account", () => {
   const prefs = ref(undefined);
   const steps = ref(0);
   const loading = ref(true);
+  const loadacc = ref(true);
   const ro = ref(false);
 
   function tempLoad(value, delay) {
@@ -58,33 +59,29 @@ export const useAccountStore = defineStore("account", () => {
 
   const updateprefs = () => {
     //if(loading.value) return;
-    try {
-      useAccount()
-        .prefs()
-        .then((data) => {
-          prefs.value = data;
-          console.log(prefs.value);
-          checkSteps();
-        });
-    } catch (err) {
-      loading.value = false;
-      console.log(err);
-    }
+    useAccount()
+      .prefs()
+      .then((data) => {
+        prefs.value = data;
+        console.log(prefs.value);
+        checkSteps();
+      });
   };
 
   onMounted(() => {
-    try {
-      useAccount()
-        .connected()
-        .then((data) => {
-          console.log("connected", data);
-          connected.value = data;
-          updateprefs();
-        });
-    } catch (err) {
-      loading.value = false;
-      console.log(err);
-    }
+    loadacc.value = true;
+    useAccount()
+      .connected()
+      .then((data) => {
+        console.log("connected", data);
+        connected.value = data;
+        updateprefs();
+      })
+      .finally(() => {
+        setTimeout(() => {
+          loadacc.value = false;
+        }, 1000);
+      });
   });
 
   return {
@@ -96,5 +93,6 @@ export const useAccountStore = defineStore("account", () => {
     prefs,
     updateprefs,
     tempLoad,
+    loadacc,
   };
 });

@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute inset-0 bg-cover bg-center filter blur-md"></div>
+    <div class="absolute fixed grid place-items-center inset-0 bg-cover bg-center filter blur-md"></div>
 
     <!-- Overlay content -->
     <section class="absolute text-center z-20 bg-white shadow p-4 sm:p-8 md:p-12 w-full md:w-1/2 lg:w-1/3 backdrop-blur">
@@ -21,7 +21,4 @@
         </button>
       </div>
     </section>
-
-    <!-- Your map component goes here -->
-    <div id="map" class="hidden md:block w-3/4 h-3/4"></div>
 </template>
