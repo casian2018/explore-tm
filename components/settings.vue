@@ -407,7 +407,7 @@
     </div>
   </div>
 
-  <div id="PersonalInfo" class="tabcontent hidden">
+  <div id="PersonalInfo" class="tabcontent">
     <h1 class="text-2xl font-semibold text-gray-700 text-center mt-4">Personal Info</h1>
     <form class="p-4 col-span-2 sm:col-span-1 md:col-span-1 mx-[30%]">
       <div class="col-span-1">
