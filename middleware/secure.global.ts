@@ -12,7 +12,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
   let secure = await useAccount().connected();
   console.log("secure", secure)
   
-  if(!secure && to.path.startsWith("/") && to.path !== "/"){
+  if(!secure && to.path.startsWith("/") && to.path !== "/" && to.path !== "/stand"){
     return navigateTo("/");
   }
 });
