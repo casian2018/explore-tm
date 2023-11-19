@@ -78,6 +78,7 @@ setInterval(() => {
               target="_blank"
               >{{ p.name }}</a
             >
+            <p>{{ p.description }}</p>
           </div>
         </LPopup>
       </LMarker>
