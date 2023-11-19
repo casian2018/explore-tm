@@ -21,6 +21,8 @@ onMounted(() => {
       console.log(useAccount().connected())
       if (prefs.ci !== undefined) ci.value = prefs.ci;
       if (prefs.stpt !== undefined) stpt.value = prefs.stpt;
+      if (prefs.phone !== undefined) stpt.value = prefs.stpt;
+      if (prefs.name !== undefined) stpt.value = prefs.stpt;
     });
 });
 
@@ -474,6 +476,44 @@ function save() {
       <div class="col-span-1">
         <div class="col-span-1">
           <label
+            for="name"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Full Name</label
+          >
+          <div class="mt-2">
+            <input
+              id="name"
+              name="name"
+              type="namne"
+              autocomplete="name"
+              v-model="name"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-span-1">
+        <div class="col-span-1">
+          <label
+            for="Phone"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Phone Number</label
+          >
+          <div class="mt-2">
+            <input
+              id="phone"
+              name="phone"
+              type="phone"
+              autocomplete="phone"
+              v-model="phone"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-span-1">
+        <div class="col-span-1">
+          <label
             for="CI"
             class="block text-sm font-medium leading-6 text-gray-900"
             >Personal Identification Number</label
@@ -509,6 +549,7 @@ function save() {
           </div>
         </div>
       </div>
+      
       <div class="mt-6 flex items-center justify-end gap-x-6">
         <button
           type="button"

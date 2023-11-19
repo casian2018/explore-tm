@@ -10,16 +10,21 @@
 
     <!-- Step 2: Location Map -->
     <div v-show="activeButton === 'bike'" class="bike mb-8">
+      <!-- Bike content goes here -->
       Bike content
     </div>
 
     <div v-show="activeButton === 'scooter'" class="scooter mb-8">
+      <!-- Scooter content goes here -->
       Scooter content
     </div>
   </div>
 </template>
 
 <script>
+
+import { ref } from "vue";
+const store = useAccountStore();
 export default {
   data() {
     return {
