@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     proxyRoute: "/appwrite",
   },
   chatgpt: {
-    apiKey: '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'
+    apiKey: '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'
   },
   routeRules: {
     '/csuki/**': {
