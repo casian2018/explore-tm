@@ -32,15 +32,16 @@ setInterval(() => {
   // get position
   navigator.geolocation.getCurrentPosition(
     (pos) => {
-      console.log(pos);
+      //console.log(pos);
       location.value = pos.coords;
+      useAccountStore().setloc(pos.coords);
       //center.value = [pos.coords.latitude, pos.coords.longitude];
     },
     (err) => {
       console.log(err.message);
     }
   );
-}, 1500);
+}, 250);
 </script>
 
 <template>
@@ -65,9 +66,9 @@ setInterval(() => {
       <LMarker v-for="p in points" :key="p.name" :lat-lng="JSON.parse(p.gps)">
         <LIcon :icon-url="p.marker" :icon-size="[32, 32]" />
         <LPopup>
-          <div class="text-black">
-            <p>Name: {{ p.name }}</p>
-            <p>GPS: {{ p.gps }}</p>
+          <div class="text-black text-center">
+            <p>{{ p.name }}</p>
+
           </div>
         </LPopup>
       </LMarker>

@@ -7,6 +7,9 @@ const store = useAccountStore();
 
 const data: any = ref(undefined);
 const type = ref(undefined);
+const way1: any = ref("default");
+const way2: any = ref(1);
+const way3: any = ref(undefined);
 
 const update = () => {
   if (process.server) return;
@@ -30,6 +33,20 @@ const select = (data: any) => {
   type.value = data;
   update();
 };
+
+setInterval(async () => {
+  if (process.server) return;
+
+  console.log(way1.value.name, way2.value);
+  // const csuki = await $fetch(
+  //   `https://www.csuki.com/app/listview/?id=818A143063DF6D661828E3158988E756&ctr=Rom%C3%A2nia&cty=Timi%C8%99oara&lne=${way1.value.name}&dir=${way2.value}`,
+  //   { mode: "no-cors" }
+  // ).then((data) => data).catch((error) => error.data);
+  // console.log(csuki);
+
+  
+
+}, 5000);
 
 onMounted(() => {
   update();
@@ -125,12 +142,8 @@ onMounted(() => {
                   <p v-if="store.ro">Trasee {{ type }}</p>
                   <div v-else>
                     <p v-if="type === 'autobuz'">Bus routes</p>
-                    <p v-else-if="type === 'express'">
-                      Express bus routes
-                    </p>
-                    <p v-else-if="type === 'vaporetto'">
-                      Vaporetto routes
-                    </p>
+                    <p v-else-if="type === 'express'">Express bus routes</p>
+                    <p v-else-if="type === 'vaporetto'">Vaporetto routes</p>
                     <p v-else-if="type === 'tramvaie'">Tram routes</p>
                     <p v-else-if="type === 'troleibuze'">Trolley</p>
                   </div>
@@ -147,16 +160,56 @@ onMounted(() => {
                   </label>-->
 
                   <select
+                    v-model="way1"
                     class="w-full py-3 px-4 border border-gray-400 bg-gray-800 mt-3 rounded-lg focus:outline-none focus:border-green-500"
                   >
                     <option value="default">
                       {{ store.ro ? "Selectează" : "Select" }}
                     </option>
-                    <option v-for="stop in data" :value="stop.name">
+                    <option v-for="stop in data" :value="stop">
                       {{ stop.name }}
                     </option>
                   </select>
+
+                  <select
+                    v-if="way1 !== 'default'"
+                    v-model="way2"
+                    class="w-full py-3 px-4 border border-gray-400 bg-gray-800 mt-3 rounded-lg focus:outline-none focus:border-green-500"
+                  >
+                    <option value="1">
+                      {{ way1.routeA }}
+                    </option>
+                    <option value="2">
+                      {{ way1.routeB }}
+                    </option>
+                  </select>
                 </div>
+
+                <table
+                  v-if="way1 !== 'default' && way3 !== undefined"
+                  class="min-w-full divide-y divide-gray-200 mt-2"
+                >
+                  <tbody class="bg-gray-800 divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">First Name</td>
+                      <td class="px-6 py-4 whitespace-nowrap">Jane</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">Last Name</td>
+                      <td class="px-6 py-4 whitespace-nowrap">Doe</td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">Email</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        jane@example.com
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">Phone</td>
+                      <td class="px-6 py-4 whitespace-nowrap">555-555-5555</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
               <a href="/route" class="font-medium cursor-pointer text-white">

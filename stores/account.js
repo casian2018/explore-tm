@@ -5,6 +5,7 @@ export const useAccountStore = defineStore("account", () => {
   const loading = ref(true);
   const loadacc = ref(true);
   const ro = ref(false);
+  const loc = ref();
 
   function tempLoad(value, delay) {
     if (delay === undefined) delay = 100;
@@ -84,6 +85,10 @@ export const useAccountStore = defineStore("account", () => {
       });
   });
 
+  const setloc = (newloc) => {
+    loc.value = newloc;
+  }
+
   return {
     loading,
     ro,
@@ -94,5 +99,6 @@ export const useAccountStore = defineStore("account", () => {
     updateprefs,
     tempLoad,
     loadacc,
+    loc, setloc
   };
 });
