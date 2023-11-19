@@ -9,9 +9,9 @@ const changeTab = (tab) => {
 
 const ci = ref("");
 const stpt = ref("");
-// const name = ref("");
+const name = ref("");
 // const mail = ref("");
-// const phone = ref("");
+const phone = ref("");
 
 onMounted(() => {
   useAccount()
@@ -33,7 +33,15 @@ function save() {
       useAccount()
         .updatePrefs({ ["stpt"]: stpt.value })
         .then(() => {
-          store.updateprefs();
+          useAccount()
+            .updatePrefs({ ["name"]: name.value })
+            .then(() => {
+              useAccount()
+                .updatePrefs({ ["phone"]: stpt.value })
+                .then(() => {
+                  store.updateprefs();
+                });
+            });
         });
     });
 }
@@ -82,8 +90,7 @@ function save() {
   <!-- component -->
   <div class="w-10/12 mx-auto max-w-6xl">
     <div
-      class="lg:col-start-2 col-span-12 lg:col-span-10 grid grid-cols-6 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 mx-auto"
-    >
+      class="lg:col-start-2 col-span-12 lg:col-span-10 grid grid-cols-6 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 mx-auto">
       <div class="p-4 col-span-6 md:col-span-2">
         <div class="grid grid-cols-5">
           <!-- Your existing tabs content -->
@@ -97,33 +104,20 @@ function save() {
           <button class="tablink" @click="changeTab('Security')">
             TOS & Privacy
           </button>
-          <a class="" href="/logout"
-            ><svg
-              fill="#000000"
-              height="20px"
-              width="20px"
-              version="1.1"
-              id="Capa_1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              viewBox="0 0 384.971 384.971"
-              xml:space="preserve"
-            >
+          <a class="" href="/logout"><svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 384.971 384.971"
+              xml:space="preserve">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
               <g id="SVGRepo_iconCarrier">
                 <g>
                   <g id="Sign_Out">
                     <path
-                      d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03 C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03 C192.485,366.299,187.095,360.91,180.455,360.91z"
-                    ></path>
+                      d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03 C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03 C192.485,366.299,187.095,360.91,180.455,360.91z">
+                    </path>
                     <path
-                      d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279 c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179 c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z"
-                    ></path>
+                      d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279 c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179 c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z">
+                    </path>
                   </g>
                 </g>
               </g>
@@ -148,9 +142,7 @@ function save() {
             Terms and Conditions
           </h2>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >1. Acceptarea Termenilor:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">1. Acceptarea Termenilor:</h14>
           <h14 class="font-bold text-xl" v-else>1. Acceptance of Terms:</h14>
           <p v-if="store.ro">
             Prin utilizarea aplicației mobile Explore TM ("aplicația"), sunteți
@@ -161,9 +153,7 @@ function save() {
             abide by these Terms and Conditions.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >2. Eligibilitatea utilizatorului:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">2. Eligibilitatea utilizatorului:</h14>
           <h14 class="font-bold text-xl" v-else>2. User Eligibility:</h14>
           <p v-if="store.ro">
             Utilizatorii trebuie să aibă cel puțin 18 ani pentru a utiliza
@@ -176,9 +166,7 @@ function save() {
             guardian.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >3. Descrierea serviciului:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">3. Descrierea serviciului:</h14>
           <h14 class="font-bold text-xl" v-else>3. Service Description:</h14>
           <p v-if="store.ro">
             Explore TM oferă utilizatorilor o platformă pentru a explora orașul,
@@ -191,9 +179,7 @@ function save() {
             efficiently.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >4. Informații despre cont:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">4. Informații despre cont:</h14>
           <h14 class="font-bold text-xl" v-else>4. Account Information:</h14>
           <p v-if="store.ro">
             Utilizatorii sunt responsabili pentru păstrarea confidențialității
@@ -207,9 +193,7 @@ function save() {
             any unauthorized use of your account.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >5. Instrucțiuni de utilizare:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">5. Instrucțiuni de utilizare:</h14>
           <h14 class="font-bold text-xl" v-else>5. Usage Guidelines:</h14>
           <p v-if="store.ro">
             Utilizatorii trebuie să utilizeze aplicația în mod responsabil și să
@@ -222,9 +206,7 @@ function save() {
             strictly prohibited.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >6. Servicii de închiriere:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">6. Servicii de închiriere:</h14>
           <h14 class="font-bold text-xl" v-else>6. Rental Services:</h14>
           <p v-if="store.ro">
             Când închiriază biciclete sau scutere, utilizatorii sunt de acord să
@@ -238,9 +220,7 @@ function save() {
             responsible for any damages incurred during the rental period.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >7. Ora de sosire autobuz:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">7. Ora de sosire autobuz:</h14>
           <h14 class="font-bold text-xl" v-else>7. Bus Arrival Times:</h14>
           <p v-if="store.ro">
             Orele de sosire a autobuzului furnizate în aplicație se bazează pe
@@ -254,9 +234,7 @@ function save() {
             delays caused by unforeseen circumstances.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >8. Date și confidențialitate:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">8. Date și confidențialitate:</h14>
           <h14 class="font-bold text-xl" v-else>8. Data and Privacy:</h14>
           <p v-if="store.ro">
             Explore TM apreciază confidențialitatea utilizatorilor. Colectarea
@@ -268,9 +246,7 @@ function save() {
             information are governed by our Privacy Policy.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >9. Proprietatea intelectuală:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">9. Proprietatea intelectuală:</h14>
           <h14 class="font-bold text-xl" v-else>9. Intellectual Property:</h14>
           <p v-if="store.ro">
             Tot conținutul și materialele disponibile în aplicație, inclusiv
@@ -295,12 +271,8 @@ function save() {
             without prior notice for violations of these Terms and Conditions.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >11. Exonerare de garanție:</h14
-          >
-          <h14 class="font-bold text-xl" v-else
-            >11. Disclaimer of Warranty:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">11. Exonerare de garanție:</h14>
+          <h14 class="font-bold text-xl" v-else>11. Disclaimer of Warranty:</h14>
           <p v-if="store.ro">
             Aplicația este furnizată „ca atare”, fără garanții de niciun fel,
             fie exprese, fie implicite. Explore TM face nu garantează
@@ -312,12 +284,8 @@ function save() {
             reliability, or availability of the App.
           </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >12. Limitarea răspunderii:</h14
-          >
-          <h14 class="font-bold text-xl" v-else
-            >12. Limitation of Liability:</h14
-          >
+          <h14 class="font-bold text-xl" v-if="store.ro">12. Limitarea răspunderii:</h14>
+          <h14 class="font-bold text-xl" v-else>12. Limitation of Liability:</h14>
           <p v-if="store.ro">
             Explore TM nu este responsabil pentru nicio daune directe,
             indirecte, incidentale, consecutive sau punitive care rezultă din
@@ -327,64 +295,60 @@ function save() {
             Explore TM is not liable for any direct, indirect, incidental,
             consequential, or punitive damages arising out of your use of the
             App.
-          </p>
+        </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >13. Modificări ale Termenilor:</h14
-          >
-          <h14 class="font-bold text-xl" v-else>13. Changes to Terms:</h14>
-          <p v-if="store.ro">
-            Explore TM poate actualiza acești Termeni și Condiții în orice
-            moment. Utilizatorii vor fi informați cu privire la orice
-            semnificație modificări.
-          </p>
-          <p v-else>
-            Explore TM may update these Terms and Conditions at any time. Users
-            will be notified of any significant changes.
-          </p>
+        <h14 class="font-bold text-xl" v-if="store.ro">13. Modificări ale Termenilor:</h14>
+        <h14 class="font-bold text-xl" v-else>13. Changes to Terms:</h14>
+        <p v-if="store.ro">
+          Explore TM poate actualiza acești Termeni și Condiții în orice
+          moment. Utilizatorii vor fi informați cu privire la orice
+          semnificație modificări.
+        </p>
+        <p v-else>
+          Explore TM may update these Terms and Conditions at any time. Users
+          will be notified of any significant changes.
+        </p>
 
-          <h14 class="font-bold text-xl" v-if="store.ro"
-            >14. Legea aplicabilă:</h14
-          >
-          <h14 class="font-bold text-xl" v-else>14. Governing Law:</h14>
-          <p v-if="store.ro">
-            Acești Termeni și Condiții sunt guvernați și interpretați în
-            conformitate cu legile dvs jurisdicție.
-          </p>
-          <p v-else>
-            These Terms and Conditions are governed by and construed in
-            accordance with the laws of your jurisdiction.
-          </p>
-          <p v-if="store.ro">
-            Folosind aplicația Explore TM, confirmați că ați citit, înțeles și
-            sunteți de acord cu acești Termeni și Condiții.
-          </p>
-          <p v-else>
-            By using the Explore TM App, you acknowledge that you have read,
-            understood, and agree to these Terms and Conditions.
-          </p>
-        </section>
+        <h14 class="font-bold text-xl" v-if="store.ro">14. Legea aplicabilă:</h14>
+        <h14 class="font-bold text-xl" v-else>14. Governing Law:</h14>
+        <p v-if="store.ro">
+          Acești Termeni și Condiții sunt guvernați și interpretați în
+          conformitate cu legile dvs jurisdicție.
+        </p>
+        <p v-else>
+          These Terms and Conditions are governed by and construed in
+          accordance with the laws of your jurisdiction.
+        </p>
+        <p v-if="store.ro">
+          Folosind aplicația Explore TM, confirmați că ați citit, înțeles și
+          sunteți de acord cu acești Termeni și Condiții.
+        </p>
+        <p v-else>
+          By using the Explore TM App, you acknowledge that you have read,
+          understood, and agree to these Terms and Conditions.
+        </p>
+      </section>
 
-        <!-- Privacy Policy Section -->
-        <section class="mt-8">
-          <h2 class="text-2xl font-semibold mb-2" v-if="store.ro">
-            Politica de confidențialitate
-          </h2>
+      <!-- Privacy Policy Section -->
+      <section class="mt-8">
+        <h2 class="text-2xl font-semibold mb-2" v-if="store.ro">
+          Politica de confidențialitate
+        </h2>
 
-          <h2 class="text-2xl font-semibold mb-2">Privacy Policy</h2>
+        <h2 class="text-2xl font-semibold mb-2">Privacy Policy</h2>
 
-          <p class="text-lg" v-if="store.ro">
-            <strong class="font-bold text-xl">Colectarea de informații:</strong>
-            Explore TM colectează anumite informații atunci când utilizați
-            aplicația noastră, inclusiv, dar fără a se limita la informațiile
-            dispozitivului dvs., locația și modelele de utilizare.
-          </p>
-          <p class="text-lg" v-else>
-            <strong class="font-bold text-xl">Information Collection:</strong>
-            Explore TM collects certain information when you use our App,
-            including but not limited to your device information, location, and
-            usage patterns.
-          </p>
+        <p class="text-lg" v-if="store.ro">
+          <strong class="font-bold text-xl">Colectarea de informații:</strong>
+          Explore TM colectează anumite informații atunci când utilizați
+          aplicația noastră, inclusiv, dar fără a se limita la informațiile
+          dispozitivului dvs., locația și modelele de utilizare.
+        </p>
+        <p class="text-lg" v-else>
+          <strong class="font-bold text-xl">Information Collection:</strong>
+          Explore TM collects certain information when you use our App,
+          including but not limited to your device information, location, and
+          usage patterns.
+        </p>
           <p class="text-lg" v-if="store.ro">
             <strong class="font-bold text-xl">Utilizarea datelor:</strong>
             Utilizăm datele colectate în diverse scopuri, cum ar fi
@@ -419,148 +383,103 @@ function save() {
     </h1>
     <div class="p-4 col-span-2 sm:col-span-1 md:col-span-1 mx-[30%]">
       <!--  <div class="col-span-1">
-        <label
-          for="name"
-          class="block text-sm font-medium leading-6 text-gray-900"
-          >User name</label
-        >
-        <div class="mt-2">
-          <input
-            type="text"
-            name="name"
-            id="name"
-            v-model="name"
-            autocomplete="name"
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-        </div>
-      </div>
-      <div class="col-span-1">
-        <div class="col-span-1">
-          <label
-            for="email"
-            class="block text-sm font-medium leading-6 text-gray-900"
-            >Email address</label
-          >
-          <div class="mt-2">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              v-model="mail"
-              autocomplete="email"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="col-span-1">
-        <div class="col-span-1">
-          <label
-            for="phone"
-            class="block text-sm font-medium leading-6 text-gray-900"
-            >Phone Number</label
-          >
-          <div class="mt-2">
-            <input
-              id="phone"
-              name="phone"
-              type="phone"
-              v-model="phone"
-              autocomplete="phone"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-      </div>  -->
-      <div class="col-span-1">
-        <div class="col-span-1">
           <label
             for="name"
             class="block text-sm font-medium leading-6 text-gray-900"
-            >Full Name</label
+            >User name</label
           >
           <div class="mt-2">
             <input
-              id="name"
+              type="text"
               name="name"
-              type="namne"
-              autocomplete="name"
+              id="name"
               v-model="name"
+              autocomplete="name"
               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
+          </div>
+        </div>
+        <div class="col-span-1">
+          <div class="col-span-1">
+            <label
+              for="email"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Email address</label
+            >
+            <div class="mt-2">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                v-model="mail"
+                autocomplete="email"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-span-1">
+          <div class="col-span-1">
+            <label
+              for="phone"
+              class="block text-sm font-medium leading-6 text-gray-900"
+              >Phone Number</label
+            >
+            <div class="mt-2">
+              <input
+                id="phone"
+                name="phone"
+                type="phone"
+                v-model="phone"
+                autocomplete="phone"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+        </div>  -->
+      <div class="col-span-1">
+        <div class="col-span-1 text-center md:text-start">
+          <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
+          <div class="mt-2 flex justify-center">
+            <input id="name" name="name" type="name" autocomplete="name" v-model="name"
+              class="block md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
       </div>
       <div class="col-span-1">
-        <div class="col-span-1">
-          <label
-            for="Phone"
-            class="block text-sm font-medium leading-6 text-gray-900"
-            >Phone Number</label
-          >
-          <div class="mt-2">
-            <input
-              id="phone"
-              name="phone"
-              type="phone"
-              autocomplete="phone"
-              v-model="phone"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
+        <div class="col-span-1 text-center md:text-start">
+          <label for="Phone" class="block text-sm font-medium leading-6 text-gray-900">Phone Number</label>
+          <div class="mt-2 flex justify-center">
+            <input id="phone" name="phone" type="phone" autocomplete="phone" v-model="phone"
+              class="block md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
       </div>
-      <div class="col-span-1">
-        <div class="col-span-1">
-          <label
-            for="CI"
-            class="block text-sm font-medium leading-6 text-gray-900"
-            >Personal Identification Number</label
-          >
-          <div class="mt-2">
-            <input
-              id="CI"
-              name="CI"
-              type="number"
-              autocomplete=""
-              v-model="ci"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
+      <div class="col-span-1 ">
+        <div class="col-span-1  text-center md:text-start">
+          <label for="CI" class="block text-sm font-medium leading-6 text-gray-900">Personal Identification Number</label>
+          <div class="mt-2 flex justify-center">
+            <input id="CI" name="CI" type="number" autocomplete="" v-model="ci"
+              class="block md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
       </div>
-      <div class="col-span-1">
+      <div class="col-span-1 text-center md:text-start">
         <div class="col-span-1">
-          <label
-            for="STPT Card Number"
-            class="block text-sm font-medium leading-6 text-gray-900"
-            >STPT Card Number</label
-          >
-          <div class="mt-2">
-            <input
-              id="number"
-              name="STPT Card Number"
-              type="phone"
-              autocomplete=""
-              v-model="stpt"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
+          <label for="STPT Card Number" class="block text-sm font-medium leading-6 text-gray-900">STPT Card Number</label>
+          <div class="mt-2 flex justify-center">
+            <input id="number" name="STPT Card Number" type="phone" autocomplete="" v-model="stpt"
+              class="block md:w-full  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
       </div>
-      
+
       <div class="mt-6 flex items-center justify-end gap-x-6">
-        <button
-          type="button"
-          class="text-sm font-semibold leading-6 text-gray-900"
-        >
+        <button type="button" class="text-sm font-semibold leading-6 text-gray-900">
           Cancel
         </button>
-        <button
-          @click="save"
-          class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
+        <button @click="save"
+          class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
           Save
         </button>
       </div>
