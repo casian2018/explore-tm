@@ -6,12 +6,17 @@ export default defineNuxtConfig({
     "nuxt3-appwrite",
     "@pinia/nuxt",
     "nuxt3-leaflet",
-    "nuxt-chatgpt"
+    "nuxt-chatgpt",
   ],
   appwrite: {
     proxyRoute: "/appwrite",
   },
   chatgpt: {
-    apiKey: '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'
+    apiKey: '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'
   },
+  routeRules: {
+    '/csuki/**': {
+        proxy: { to: "https://www.csuki.com/app/**", },
+    }
+  }
 });

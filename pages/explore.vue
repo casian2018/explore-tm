@@ -63,20 +63,13 @@ function generate() {
       const text =
         "The output should be ONLY the selected places in the JSON array with 'name' and 'gps' for each one, the json array is called '{'places'}' in the output, with no other messages/comments. THE ONLY OUTPUT IS THE JSON. Please consider the conditions: " +
         details.value +
-        "." +
-        "Have you ever been to Timișoara? " +
-        prefs.firstTime +
-        " What attracts you most when exploring a new city? " +
+        "." + " What attracts you most when exploring a new city? " +
         prefs.attractions +
-        " Do you prefer to explore alone or with friends? " +
-        prefs.single +
         " What kind of activities do you enjoy in your free time? " +
         prefs.activities +
         " What is your typical budget for entertainment in the city? " +
         prefs.budget +
-        " What time of day do you prefer to explore the city? " +
-        prefs.time +
-        ". Please 10 locations. Now, I will provide you with a list of places from Timișoara. select the places with the most close coordinates, depending on the time allocated and other conditions lower the maximum, conditions and names, please respect the maximum locations number, exclude places with 'Ghiseu*, TmVelo*, Statie*' in their name, and add them to the places of the output in the json array. The available locations are: " +
+        ". Now, I will provide you with a list of places from Timișoara. select the places with the most close coordinates, depending on the time allocated and other conditions lower the maximum, conditions and names, please respect the maximum locations number (10), exclude places with 'Ghiseu*, TmVelo*, Statie*' in their name, and add them to the places of the output in the json array. The available locations are: " +
         locations;
 
       (async () => {
@@ -91,11 +84,11 @@ function generate() {
 
 <template>
   <div
-    class="fixed grid place-items-center backdrop-blur-sm top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center"
+    class="absolute grid place-items-center backdrop-blur-sm top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center"
   >
     <div class="relative container m-auto px-6">
       <div class="m-auto min-w-lg">
-        <div class="rounded-xl bg-gray-800 shadow-xl">
+        <div class="rounded-xl bg-gray-800 mt-4 mb-24 shadow-xl overflow-y-auto">
           <div class="p-8">
             <div class="space-y-4">
               <a href="/explore"><img :src="logo" class="w-52" /></a>
@@ -151,8 +144,8 @@ function generate() {
               </select>-->
 
               <div class="grid place-items-center">
-                <div class="relative">
-                  <div class="absolute -inset-2.5">
+                <div class="relative mt-4">
+                  <div class="absolute -inset-1.5">
                     <div
                       class="w-full h-full max-w-sm mx-auto lg:mx-0 opacity-30 blur-lg bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"
                     ></div>

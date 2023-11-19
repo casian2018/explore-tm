@@ -17,11 +17,11 @@ function answer(key, value) {
 
 <template>
   <div
-    class="fixed grid place-items-center backdrop-blur-sm top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center"
+    class="absolute grid place-items-center backdrop-blur-sm top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center"
   >
     <div class="relative container m-auto px-6">
       <div class="m-auto md:w-7/12 py-6">
-        <div class="rounded-xl bg-gray-800 shadow-xl">
+        <div class="rounded-xl bg-gray-800 mt-4 mb-24 shadow-xl overflow-y-auto">
           <div class="p-8">
             <div class="space-y-4">
               <img :src="logo" loading="lazy" class="w-52" />
@@ -396,7 +396,7 @@ function answer(key, value) {
                 By proceeding, you agree to our
                 <a href="/tos/" class="underline">Terms of Use</a>
                 and confirm you have read our
-                <a href="/privacy/" class="underline"
+                <a href="/tos/" class="underline"
                   >Privacy and Cookie Statement</a
                 >.
               </p>

@@ -12,11 +12,14 @@ const center: any = computed(() => [
   location.value.longitude,
 ]);
 
+const store = useAccountStore();
 const points = ref<any>(undefined);
 
 const client = useAppwrite();
 client.databases
-  .listDocuments("655831ac4075d3f13cae", "655865878f6ee4aa1aeb", [Query.limit(500)])
+  .listDocuments("655831ac4075d3f13cae", "655865878f6ee4aa1aeb", [
+    Query.limit(500),
+  ])
   .then((response) => {
     console.log("points", response);
     points.value = response.documents;
@@ -41,16 +44,11 @@ setInterval(() => {
       console.log(err.message);
     }
   );
-<<<<<<< HEAD
 }, 250);
-=======
-}, 1500);
-
->>>>>>> 429562f2ed3a1c7b4186ef9ac310e06938f84eb6
 </script>
 
 <template>
-  <div style="height: 100vh; width: 100vw">
+  <div class="fixed m-0 z-10 min-h-screen h-full w-full">
     <LMap ref="map" :zoom="15" :minZoom="8" :center="center" class="z-10">
       <LTileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -61,19 +59,25 @@ setInterval(() => {
 
       <template v-if="location">
         <l-circle-marker :lat-lng="center" :fillOpacity="1" :radius="0.25" />
-        <l-circle-marker
-          :lat-lng="center"
-          :radius="35"
-          :stroke="true"
-        />
+        <l-circle-marker :lat-lng="center" :radius="35" :stroke="true" />
       </template>
 
       <LMarker v-for="p in points" :key="p.name" :lat-lng="JSON.parse(p.gps)">
         <LIcon :icon-url="p.marker" :icon-size="[32, 32]" />
         <LPopup>
-          <div class="text-black text-center">
-            <p>{{ p.name }}</p>
-
+          <div class="text-black text-center" v-if="store.loc">
+            <a
+              :href="
+                `https://www.google.com/maps/dir/` +
+                store.loc.latitude +
+                ',' +
+                store.loc.longitude +
+                '/' +
+                p.name
+              "
+              target="_blank"
+              >{{ p.name }}</a
+            >
           </div>
         </LPopup>
       </LMarker>

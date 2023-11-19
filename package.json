@@ -20,6 +20,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
     "nuxt3-appwrite": "^1.6.7",
     "ol": "^8.2.0",
     "ol-contextmenu": "^5.3.0",

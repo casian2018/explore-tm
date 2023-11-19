@@ -5,7 +5,7 @@ import { Query } from "appwrite";
 
 const store = useAccountStore();
 
-const data: any = ref(undefined);
+const data: Ref<any> = ref(undefined);
 const type = ref(undefined);
 const way1: any = ref("default");
 const way2: any = ref(1);
@@ -34,19 +34,51 @@ const select = (data: any) => {
   update();
 };
 
-setInterval(async () => {
-  if (process.server) return;
+// setInterval(async () => {
+//   console.log(way1.value.name, way2.value);
+//   // const csuki = await $fetch(
+//   //   `https://www.csuki.com/app/listview/?id=818A143063DF6D661828E3158988E756&ctr=Rom%C3%A2nia&cty=Timi%C8%99oara&lne=${way1.value.name}&dir=${way2.value}`,
+//   //   { mode: "no-cors" }
+//   // ).then((data) => data).catch((error) => error.data);
+//   // console.log(csuki);
 
+// }, 5000);
+
+async function update2() {
   console.log(way1.value.name, way2.value);
-  // const csuki = await $fetch(
-  //   `https://www.csuki.com/app/listview/?id=818A143063DF6D661828E3158988E756&ctr=Rom%C3%A2nia&cty=Timi%C8%99oara&lne=${way1.value.name}&dir=${way2.value}`,
-  //   { mode: "no-cors" }
-  // ).then((data) => data).catch((error) => error.data);
-  // console.log(csuki);
+  const { data } = await useFetch(
+    `csuki/listview/?id=818A143063DF6D661828E3158988E756&ctr=Rom%C3%A2nia&cty=Timi%C8%99oara&lne=${way1.value.name}&dir=${way2.value}`
+  );
 
-  
+  let temp: any = data.value;
+  temp = temp.data;
 
-}, 5000);
+  console.log(temp);
+  temp.splice(0, 2);
+
+  let chunked = [];
+
+  for (let i = 0; i < temp.length; i += 5) {
+    let chunk = temp.slice(i, i + 5);
+
+    let inStation = chunk[0];
+    let status = chunk[1];
+    let stationName = chunk[2];
+    let timeEstimation = chunk[3] === "❌" ? "STPT server down" : chunk[3] + "m";
+    let lineName = chunk[4];
+
+    chunked.push({
+      inStation,
+      status,
+      stationName,
+      timeEstimation,
+      lineName,
+    });
+  }
+
+  way3.value = chunked;
+  console.log(way3.value);
+}
 
 onMounted(() => {
   update();
@@ -55,11 +87,11 @@ onMounted(() => {
 
 <template>
   <div
-    class="fixed grid place-items-center backdrop-blur-sm top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center"
+    class="absolute grid place-items-center backdrop-blur-sm top-0 right-0 left-0 z-50 w-full inset-0 h-modal h-full justify-center items-center"
   >
     <div class="relative container m-auto px-6">
       <div class="m-auto min-w-lg">
-        <div class="rounded-xl bg-gray-800 shadow-xl">
+        <div class="rounded-xl bg-gray-800 mt-4 mb-24 shadow-xl overflow-y-auto">
           <div class="p-8">
             <div class="space-y-4">
               <a href="/route"><img :src="logo" class="w-52" /></a>
@@ -161,6 +193,7 @@ onMounted(() => {
 
                   <select
                     v-model="way1"
+                    @change="update2()"
                     class="w-full py-3 px-4 border border-gray-400 bg-gray-800 mt-3 rounded-lg focus:outline-none focus:border-green-500"
                   >
                     <option value="default">
@@ -174,6 +207,7 @@ onMounted(() => {
                   <select
                     v-if="way1 !== 'default'"
                     v-model="way2"
+                    @change="update2()"
                     class="w-full py-3 px-4 border border-gray-400 bg-gray-800 mt-3 rounded-lg focus:outline-none focus:border-green-500"
                   >
                     <option value="1">
@@ -190,23 +224,9 @@ onMounted(() => {
                   class="min-w-full divide-y divide-gray-200 mt-2"
                 >
                   <tbody class="bg-gray-800 divide-y divide-gray-200">
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap">First Name</td>
-                      <td class="px-6 py-4 whitespace-nowrap">Jane</td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap">Last Name</td>
-                      <td class="px-6 py-4 whitespace-nowrap">Doe</td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap">Email</td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        jane@example.com
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap">Phone</td>
-                      <td class="px-6 py-4 whitespace-nowrap">555-555-5555</td>
+                    <tr v-for="o in way3">
+                      <td class="px-6 py-4 whitespace-nowrap">{{ o.timeEstimation }}</td>
+                      <td class="px-6 py-4 whitespace-nowrap">{{ o.stationName }}</td>
                     </tr>
                   </tbody>
                 </table>

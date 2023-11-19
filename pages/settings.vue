@@ -1,4 +1,4 @@
 <template>
     <Settings/>
-    <Bnav/>
+    <navBottom/>
 </template>
