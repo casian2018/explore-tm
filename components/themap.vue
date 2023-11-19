@@ -41,7 +41,12 @@ setInterval(() => {
       console.log(err.message);
     }
   );
+<<<<<<< HEAD
 }, 250);
+=======
+}, 1500);
+
+>>>>>>> 429562f2ed3a1c7b4186ef9ac310e06938f84eb6
 </script>
 
 <template>
