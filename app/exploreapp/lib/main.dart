@@ -19,7 +19,7 @@ class WebViewApp extends StatefulWidget {
 class _WebViewAppState extends State<WebViewApp> {
   late final WebViewController controller;
 
-  String url = 'https://6zk4j94w-3000.euw.devtunnels.ms/';
+  String url = 'https://exploretm.co/';
 
   @override
   void initState() {
