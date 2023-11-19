@@ -17,6 +17,12 @@ export default defineNuxtConfig({
   routeRules: {
     '/csuki/**': {
         proxy: { to: "https://www.csuki.com/app/**", },
-    }
+    },
+    '/etwow/**': {
+        proxy: { to: "http://e-twow.app/gps/**", },
+    },
+    '/trotm/**': {
+        proxy: { to: "http://trotm.ro/gps/**", },
+    },
   }
 });

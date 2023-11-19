@@ -3,8 +3,8 @@ import { ref } from "vue";
 import { Query } from "appwrite";
 const map = ref();
 const location = ref({
-  latitude: 21.22888756076315,
-  longitude: 45.75280124672338,
+  latitude: 45.75280124672338,
+  longitude: 21.22888756076315,
   accuracy: 89,
 });
 const center: any = computed(() => [

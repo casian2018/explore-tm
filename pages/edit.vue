@@ -38,7 +38,7 @@ function generate(p) {
     "Te rog sa gandesti o descriere la urmatorul obiectiv turistic, LOcatie: " +
       p.name +
       " gps: " +
-      p.gps
+      p.gps + " Timisoara"
   ).then((data) => {
     console.log(data);
 
