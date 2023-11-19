@@ -21,8 +21,8 @@ onMounted(() => {
       console.log(useAccount().connected())
       if (prefs.ci !== undefined) ci.value = prefs.ci;
       if (prefs.stpt !== undefined) stpt.value = prefs.stpt;
-      if (prefs.phone !== undefined) stpt.value = prefs.stpt;
-      if (prefs.name !== undefined) stpt.value = prefs.stpt;
+      if (prefs.phone !== undefined) phone.value = prefs.phone;
+      if (prefs.name !== undefined) name.value = prefs.name;
     });
 });
 
